@@ -10,7 +10,7 @@
 ## 회차별 내용
 [예제선정참고](http://sean-smith.me/assets/portfolio/25-react-projects/index.html)
 
-1. Markdown live previewer 만들기 및 리뷰
+1. [Markdown live previewer 만들기 및 리뷰](https://github.com/kimally/React-Study/tree/master/01_markdownPreviewer)
 2. Simple realtime search 만들기 및 리뷰
 3. 
 4. 
