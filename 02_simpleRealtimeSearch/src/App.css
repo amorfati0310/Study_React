@@ -1,28 +1,36 @@
-.App {
+body { background-color: gray; }
+body * { box-sizing: border-box; }
+
+/* Layout */
+
+.search-app {
+  margin: 30px auto;
+  width: 600px;
+}
+#header {
+  margin-bottom: 40px;
+  padding: 30px; border: 5px solid #fff;
   text-align: center;
 }
+#main { margin: 0 auto; width: 450px; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+/* search input */
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.search-input { text-align: center; }
+.search-input input[type="text"] {
+  padding: 10px; width: 100%; border: 5px solid #000;
+  font-size: 20px;
 }
+.search-input input[type="text"]:focus { outline: none; }
 
-.App-title {
-  font-size: 1.5em;
-}
+/* search list */
 
-.App-intro {
-  font-size: large;
+.search-list {
+  margin-top: 20px; padding: 20px;
+  background-color: #a3a3a3;
 }
+.search-list li { padding: 6px 0; font-size: 20px; }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+/* etc.. */
+
+.progress-notice { text-align: center; }
