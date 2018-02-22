@@ -23,16 +23,16 @@ class SearchList extends Component {
     super();
     this.totalList = [];
     this.state = {
-      filteredList: [],
+      filteredList: [], // 최초 로딩시 한번밖에 안쓰는데 꼭 필요한가.?
       isLoading: true,
       isFailed: false
     };
   }
   componentDidMount() {
-    const reqUrlForArtist = 'https://gist.githubusercontent.com/LumiLoves/6c87a4cf79d5ce2410e849abc8e3f81f/raw/d162071c9db32c35c69e7a2656f1e78833329b85/list.json';
+    const URL_ARTIST_NAMES = 'https://gist.githubusercontent.com/LumiLoves/6c87a4cf79d5ce2410e849abc8e3f81f/raw/d162071c9db32c35c69e7a2656f1e78833329b85/list.json';
 
     setTimeout(() => {
-      this.getJSON(reqUrlForArtist, null, (json) => {
+      this.getJSON(URL_ARTIST_NAMES, null, (json) => {
         this.totalList = json.Reggae;
         this.setState({
           isLoading: false,
@@ -65,13 +65,6 @@ class SearchList extends Component {
     totalList.forEach((elem) => { elem.match(regexKey) && resultArr.push(elem); });
     return resultArr;
   }
-  makeHtml(listArr) {
-    if (!listArr || !listArr.length) { return ''; }
-
-    let result = '';
-    listArr.forEach((item) => { result += `<li>${item}</li>`; });
-    return result;
-  }
 
   render() {
     if (this.state.isLoading) {
@@ -91,7 +84,7 @@ class SearchList extends Component {
     }
 
     const filteredList = this.filter(this.props.searchkey);
-    const searchListItems = filteredList.map((artistName, index) => (
+    const filteredListComponents = filteredList.map((artistName, index) => (
       <SearchListItem artistName={artistName} key={index} />
     ));
 
@@ -105,7 +98,7 @@ class SearchList extends Component {
 
     return (
       <div className="search-list">
-        <ul>{searchListItems}</ul>
+        <ul>{filteredListComponents}</ul>
       </div>
     );
   }
