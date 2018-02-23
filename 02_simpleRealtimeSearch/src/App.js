@@ -57,16 +57,13 @@ class SearchList extends Component {
     xhr.send(data);
   }
   filter(key) {
-    const totalList = this.totalList;
-    const regexKey = new RegExp(key, 'i');
-    let resultArr = [];
-
-    if (key === '') { return totalList; }
-    totalList.forEach((elem) => { elem.match(regexKey) && resultArr.push(elem); });
-    return resultArr;
+    if (key === '') { return this.totalList; }
+    const filteredList = this.totalList.filter((elem) => elem.match(new RegExp(key, 'i')));
+    return filteredList;
   }
 
   render() {
+    // Ajax 대기중
     if (this.state.isLoading) {
       return (
         <div className="search-list">
@@ -75,6 +72,7 @@ class SearchList extends Component {
       );
     }
 
+    // Ajax 요청 실패
     if (this.state.isFailed) {
       return (
         <div className="search-list">
@@ -83,11 +81,8 @@ class SearchList extends Component {
       );
     }
 
+    // Ajax 요청 성공
     const filteredList = this.filter(this.props.searchKey);
-    const filteredListComponents = filteredList.map((artistName, index) => (
-      <SearchListItem artistName={artistName} key={index} />
-    ));
-
     if (filteredList.length === 0) {
       return (
         <div className="search-list">
@@ -95,10 +90,15 @@ class SearchList extends Component {
         </div>
       );
     }
-
     return (
       <div className="search-list">
-        <ul>{filteredListComponents}</ul>
+        <ul>
+          {
+            filteredList.map((artistName, index) => (
+              <SearchListItem artistName={artistName} key={index} />
+            ))
+          }
+        </ul>
       </div>
     );
   }
