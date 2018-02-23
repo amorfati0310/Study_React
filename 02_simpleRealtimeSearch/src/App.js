@@ -83,7 +83,7 @@ class SearchList extends Component {
       );
     }
 
-    const filteredList = this.filter(this.props.searchkey);
+    const filteredList = this.filter(this.props.searchKey);
     const filteredListComponents = filteredList.map((artistName, index) => (
       <SearchListItem artistName={artistName} key={index} />
     ));
@@ -136,7 +136,7 @@ class MainSection extends Component {
     return (
       <main id="main">
         <SearchInput handleChangeInput={this.handleChangeInput.bind(this)} />
-        <SearchList searchkey={this.state.searchKey} />
+        <SearchList searchKey={this.state.searchKey} />
       </main>
     );
   }
